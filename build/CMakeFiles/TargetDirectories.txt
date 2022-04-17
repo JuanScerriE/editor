@@ -1,0 +1,3 @@
+/home/juan/Desktop/editor/build/CMakeFiles/editor.dir
+/home/juan/Desktop/editor/build/CMakeFiles/edit_cache.dir
+/home/juan/Desktop/editor/build/CMakeFiles/rebuild_cache.dir

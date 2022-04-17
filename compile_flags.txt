@@ -1,0 +1,6 @@
+-std=c17
+-Wextra
+-Werror
+-Wall
+-pedantic
+-g

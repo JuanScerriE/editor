@@ -1,0 +1,1 @@
+/usr/bin/cc  -std=c17 -Wextra -Werror -Wall -pedantic -g CMakeFiles/editor.dir/src/editor.c.o -o editor 
