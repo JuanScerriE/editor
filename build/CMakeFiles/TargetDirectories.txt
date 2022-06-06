@@ -1,0 +1,9 @@
+/home/juan/Desktop/editor/build/CMakeFiles/edit_cache.dir
+/home/juan/Desktop/editor/build/CMakeFiles/rebuild_cache.dir
+/home/juan/Desktop/editor/build/include/CMakeFiles/edit_cache.dir
+/home/juan/Desktop/editor/build/include/CMakeFiles/rebuild_cache.dir
+/home/juan/Desktop/editor/build/src/CMakeFiles/Editor.dir
+/home/juan/Desktop/editor/build/src/CMakeFiles/edit_cache.dir
+/home/juan/Desktop/editor/build/src/CMakeFiles/rebuild_cache.dir
+/home/juan/Desktop/editor/build/tests/CMakeFiles/edit_cache.dir
+/home/juan/Desktop/editor/build/tests/CMakeFiles/rebuild_cache.dir

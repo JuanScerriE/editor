@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/juan/Desktop/editor/build",
+  "command": "/usr/bin/g++ -I/home/juan/Desktop/editor/build/include  -Wextra -Werror -Wall -pedantic -g -std=gnu++17 -o src/CMakeFiles/Editor.dir/Editor.cpp.o -c /home/juan/Desktop/editor/src/Editor.cpp",
+  "file": "/home/juan/Desktop/editor/src/Editor.cpp"
+}
+]

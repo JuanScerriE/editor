@@ -1,0 +1,5 @@
+# ninja log v5
+295	362	1654528420729588741	src/Editor	5117c4887c92c4e6
+0	25	1654531392042618910	build.ninja	a06fece3c1ea6005
+2	314	1654531218588925608	src/CMakeFiles/Editor.dir/Editor.cpp.o	3ffaddba1b565337
+2	307	1654531401365445419	src/CMakeFiles/Editor.dir/Editor.cpp.o	3ffaddba1b565337

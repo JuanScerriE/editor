@@ -1,4 +1,3 @@
--std=c17
 -Wextra
 -Werror
 -Wall
