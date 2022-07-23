@@ -1,5 +1,0 @@
--Wextra
--Werror
--Wall
--pedantic
--g
