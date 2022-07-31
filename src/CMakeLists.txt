@@ -1,13 +1,20 @@
 # src CMakeLists.txt
 
-add_executable(editor Editor.cpp FileView.cpp)
+add_executable(editor
+  Editor.cpp
+  VeApp.cpp
+  VeDevice.cpp
+  VeWindow.cpp
+  VePipeline.cpp
+)
+
+find_package(Vulkan REQUIRED FATA_ERROR)
 
 target_include_directories(editor PUBLIC include)
-target_include_directories(editor PRIVATE src)
-
-find_package(OpenGL REQUIRED)
-set(OpenGL_GL_PREFERENCE "GLVND")
+target_include_directories(editor PRIVATE .)
 
 target_link_libraries(editor PRIVATE glfw)
-target_link_libraries(editor PRIVATE glad)
-target_link_libraries(editor PRIVATE OpenGL::OpenGL)
+target_link_libraries(editor PRIVATE glm)
+target_link_libraries(editor PRIVATE Vulkan::Vulkan)
+
+target_compile_options(editor PRIVATE "-ldl;-lpthread;-lX11;-lXxf86vm;-lXrandr;-lXi")

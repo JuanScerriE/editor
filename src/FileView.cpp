@@ -10,16 +10,11 @@
 #include <string>
 #include <vector>
 
-struct FileView {
-  std::string m_fileName;
-
-  unsigned int m_cursorX = 0;
-  unsigned int m_cursorY = 0;
-
-  std::vector<std::string> m_rows;
-
-  // Constructor
+class FileView {
+public:
+  // Constructor / Destructor
   FileView() = default;
+  ~FileView() = default;
 
   int openFile(const std::string& fileName);
 
@@ -32,8 +27,13 @@ struct FileView {
   // Debug
   void dbgPrint();
 
-  // Destructor
-  ~FileView() = default;
+private:
+  std::string m_fileName;
+
+  unsigned int m_cursorX = 0;
+  unsigned int m_cursorY = 0;
+
+  std::vector<std::string> m_rows;
 };
 
 int FileView::openFile(const std::string& fileName) {
