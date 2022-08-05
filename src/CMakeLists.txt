@@ -6,6 +6,7 @@ add_executable(editor
   VeDevice.cpp
   VeWindow.cpp
   VePipeline.cpp
+  VeSwapChain.cpp
 )
 
 find_package(Vulkan REQUIRED FATA_ERROR)
@@ -17,4 +18,8 @@ target_link_libraries(editor PRIVATE glfw)
 target_link_libraries(editor PRIVATE glm)
 target_link_libraries(editor PRIVATE Vulkan::Vulkan)
 
-target_compile_options(editor PRIVATE "-ldl;-lpthread;-lX11;-lXxf86vm;-lXrandr;-lXi")
+if(UNIX)
+  if (NOT APPLE)
+    target_compile_options(editor PRIVATE "-ldl;-lpthread;-lX11;-lXxf86vm;-lXrandr;-lXi")
+  endif()
+endif()

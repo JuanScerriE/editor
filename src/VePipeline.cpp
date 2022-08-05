@@ -2,11 +2,11 @@
 
 #include <vulkan/vulkan_core.h>
 
+#include <cassert>
 #include <exception>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
-#include <cassert>
 
 namespace ve {
 
@@ -93,6 +93,14 @@ void VePipeline::createGraphicsPipeline(
   vertexInputInfo.pVertexAttributeDescriptions = nullptr;
   vertexInputInfo.pVertexBindingDescriptions = nullptr;
 
+  VkPipelineViewportStateCreateInfo viewportInfo{};
+
+  viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+  viewportInfo.viewportCount = 1;
+  viewportInfo.pViewports = &configInfo.viewport;
+  viewportInfo.scissorCount = 1;
+  viewportInfo.pScissors = &configInfo.scissor;
+
   VkGraphicsPipelineCreateInfo pipelineInfo{};
   pipelineInfo.sType =
       VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
@@ -101,7 +109,7 @@ void VePipeline::createGraphicsPipeline(
   pipelineInfo.pVertexInputState = &vertexInputInfo;
   pipelineInfo.pInputAssemblyState =
       &configInfo.inputAssemblyInfo;
-  pipelineInfo.pViewportState = &configInfo.viewportInfo;
+  pipelineInfo.pViewportState = &viewportInfo;
   pipelineInfo.pRasterizationState =
       &configInfo.rasterizationInfo;
   pipelineInfo.pMultisampleState =
@@ -150,12 +158,6 @@ PipelineConfigInfo VePipeline::defaultPipelineConfigInfo(
   configInfo.scissor.extent = {width, height};
 
   // Combine the viewport and scissor together
-  configInfo.viewportInfo.sType =
-      VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-  configInfo.viewportInfo.viewportCount = 1;
-  configInfo.viewportInfo.pViewports = &configInfo.viewport;
-  configInfo.viewportInfo.scissorCount = 1;
-  configInfo.viewportInfo.pScissors = &configInfo.scissor;
 
   configInfo.rasterizationInfo.sType =
       VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;

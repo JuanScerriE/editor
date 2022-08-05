@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vulkan/vulkan_core.h>
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
@@ -8,32 +9,39 @@
 namespace ve {
 
 class VeWindow {
-  public:
-    VeWindow(unsigned int w, unsigned int h, const std::string& name);
+ public:
+  VeWindow(unsigned int w, unsigned int h,
+           const std::string& name);
 
-    VeWindow(const VeWindow&) = delete;
-    VeWindow& operator=(const VeWindow&) = delete;
+  VeWindow(const VeWindow&) = delete;
+  VeWindow& operator=(const VeWindow&) = delete;
 
-    ~VeWindow();
+  ~VeWindow();
 
-    bool shouldClose() const {
-      return glfwWindowShouldClose(window);
-    }
+  bool shouldClose() const {
+    return glfwWindowShouldClose(window);
+  }
 
-    void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
+  VkExtent2D getExtent() {
+    return {static_cast<uint32_t>(width),
+            static_cast<uint32_t>(height)};
+  }
 
-    void pollEvents() const {
-      glfwPollEvents();
-    }
+  void createWindowSurface(VkInstance instance,
+                           VkSurfaceKHR* surface);
 
-  private:
-    void initWindow();
+  void pollEvents() const {
+    glfwPollEvents();
+  }
 
-    const unsigned int width;
-    const unsigned int height;
+ private:
+  void initWindow();
 
-    std::string windowName;
-    GLFWwindow *window = nullptr;
+  const int width;
+  const int height;
+
+  std::string windowName;
+  GLFWwindow* window = nullptr;
 };
 
-} // namespace ve
+}  // namespace ve
