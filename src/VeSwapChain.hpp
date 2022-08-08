@@ -2,12 +2,14 @@
 
 #include "VeDevice.hpp"
 
-// vulkan headers
+// vulkan
 #include <vulkan/vulkan.h>
 
-// std lib headers
+// std
 #include <string>
 #include <vector>
+#include <memory>
+
 
 namespace ve {
 
@@ -16,6 +18,7 @@ class VeSwapChain {
   static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
   VeSwapChain(VeDevice &deviceRef, VkExtent2D windowExtent);
+  VeSwapChain(VeDevice &deviceRef, VkExtent2D windowExtent, std::shared_ptr<VeSwapChain> previous);
   ~VeSwapChain();
 
   VeSwapChain(const VeSwapChain &) = delete;
@@ -57,6 +60,7 @@ class VeSwapChain {
       const VkCommandBuffer *buffers, uint32_t *imageIndex);
 
  private:
+  void init();
   void createSwapChain();
   void createImageViews();
   void createDepthResources();
@@ -80,6 +84,7 @@ class VeSwapChain {
   std::vector<VkFramebuffer> swapChainFramebuffers;
   VkRenderPass renderPass;
 
+
   std::vector<VkImage> depthImages;
   std::vector<VkDeviceMemory> depthImageMemorys;
   std::vector<VkImageView> depthImageViews;
@@ -90,6 +95,7 @@ class VeSwapChain {
   VkExtent2D windowExtent;
 
   VkSwapchainKHR swapChain;
+  std::shared_ptr<VeSwapChain> oldSwapChain;
 
   std::vector<VkSemaphore> imageAvailableSemaphores;
   std::vector<VkSemaphore> renderFinishedSemaphores;

@@ -2,6 +2,7 @@
 
 #include <vulkan/vulkan_core.h>
 #include "VeDevice.hpp"
+#include "VeModel.hpp"
 
 // std
 #include <string>
@@ -10,14 +11,18 @@
 namespace ve {
 
 struct PipelineConfigInfo {
-  VkViewport viewport;
-  VkRect2D scissor;
+  PipelineConfigInfo(const PipelineConfigInfo&) = delete;
+  PipelineConfigInfo& operator=(const PipelineConfigInfo&) = delete;
+
+  VkPipelineViewportStateCreateInfo viewportInfo;
   VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
   VkPipelineRasterizationStateCreateInfo rasterizationInfo;
   VkPipelineMultisampleStateCreateInfo multisampleInfo;
   VkPipelineColorBlendAttachmentState colorBlendAttachment;
   VkPipelineColorBlendStateCreateInfo colorBlendInfo;
   VkPipelineDepthStencilStateCreateInfo depthStencilInfo;
+  std::vector<VkDynamicState> dynamicStateEnables;
+  VkPipelineDynamicStateCreateInfo dynamicStateInfo;
   VkPipelineLayout piplineLayout = nullptr;
   VkRenderPass renderPass = nullptr;
   uint32_t subpass = 0;
@@ -35,7 +40,9 @@ class VePipeline {
   VePipeline(const VePipeline&) = delete;
   VePipeline& operator=(const VePipeline&) = delete;
 
-  static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t widht, uint32_t height);
+  void bind(VkCommandBuffer commandBuffer);
+
+  static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo);
 
  private:
   static std::vector<char> readFile(

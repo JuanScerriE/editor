@@ -14,6 +14,22 @@ namespace ve {
 VeSwapChain::VeSwapChain(VeDevice &deviceRef,
                          VkExtent2D extent)
     : device{deviceRef}, windowExtent{extent} {
+  init();
+}
+
+VeSwapChain::VeSwapChain(
+    VeDevice &deviceRef, VkExtent2D extent,
+    std::shared_ptr<VeSwapChain> previous)
+    : device{deviceRef},
+      windowExtent{extent},
+      oldSwapChain{previous} {
+  init();
+
+  // clean up old swap chain
+  oldSwapChain = nullptr;
+}
+
+void VeSwapChain::init() {
   createSwapChain();
   createImageViews();
   createRenderPass();
@@ -195,7 +211,7 @@ void VeSwapChain::createSwapChain() {
   createInfo.presentMode = presentMode;
   createInfo.clipped = VK_TRUE;
 
-  createInfo.oldSwapchain = VK_NULL_HANDLE;
+  createInfo.oldSwapchain = oldSwapChain == nullptr ? VK_NULL_HANDLE : oldSwapChain->swapChain;
 
   if (vkCreateSwapchainKHR(device.device(), &createInfo,
                            nullptr,
@@ -247,6 +263,24 @@ void VeSwapChain::createImageViews() {
 }
 
 void VeSwapChain::createRenderPass() {
+  VkAttachmentDescription colorAttachment{};
+  colorAttachment.format = getSwapChainImageFormat();
+  colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+  colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+  colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+  colorAttachment.stencilStoreOp =
+      VK_ATTACHMENT_STORE_OP_DONT_CARE;
+  colorAttachment.stencilLoadOp =
+      VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+  colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+  colorAttachment.finalLayout =
+      VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+  VkAttachmentReference colorAttachmentRef{};
+  colorAttachmentRef.attachment = 0;
+  colorAttachmentRef.layout =
+      VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
   VkAttachmentDescription depthAttachment{};
   depthAttachment.format = findDepthFormat();
   depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -266,32 +300,14 @@ void VeSwapChain::createRenderPass() {
   depthAttachmentRef.layout =
       VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
-  VkAttachmentDescription colorAttachment = {};
-  colorAttachment.format = getSwapChainImageFormat();
-  colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
-  colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
-  colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
-  colorAttachment.stencilStoreOp =
-      VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  colorAttachment.stencilLoadOp =
-      VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-  colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-  colorAttachment.finalLayout =
-      VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
-
-  VkAttachmentReference colorAttachmentRef = {};
-  colorAttachmentRef.attachment = 0;
-  colorAttachmentRef.layout =
-      VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-
-  VkSubpassDescription subpass = {};
+  VkSubpassDescription subpass{};
   subpass.pipelineBindPoint =
       VK_PIPELINE_BIND_POINT_GRAPHICS;
   subpass.colorAttachmentCount = 1;
   subpass.pColorAttachments = &colorAttachmentRef;
   subpass.pDepthStencilAttachment = &depthAttachmentRef;
 
-  VkSubpassDependency dependency = {};
+  VkSubpassDependency dependency{};
   dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
   dependency.srcAccessMask = 0;
   dependency.srcStageMask =
@@ -439,8 +455,7 @@ VkSurfaceFormatKHR VeSwapChain::chooseSwapSurfaceFormat(
     const std::vector<VkSurfaceFormatKHR>
         &availableFormats) {
   for (const auto &availableFormat : availableFormats) {
-    if (availableFormat.format ==
-            VK_FORMAT_B8G8R8A8_UNORM &&
+    if (availableFormat.format == VK_FORMAT_B8G8R8A8_SRGB &&
         availableFormat.colorSpace ==
             VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
       return availableFormat;

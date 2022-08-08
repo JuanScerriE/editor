@@ -3,6 +3,7 @@
 add_executable(editor
   Editor.cpp
   VeApp.cpp
+  VeModel.cpp
   VeDevice.cpp
   VeWindow.cpp
   VePipeline.cpp

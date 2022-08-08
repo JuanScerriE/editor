@@ -441,6 +441,11 @@
 },
 {
   "directory": "/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/juan/Desktop/documents/computer-science/editor/src/include -I/Users/juan/Desktop/documents/computer-science/editor/src/. -I/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug/_deps/glfw-src/include -I/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug/_deps/glm-src/glm/.. -isystem /usr/local/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=gnu++17 -o src/CMakeFiles/editor.dir/VeModel.cpp.o -c /Users/juan/Desktop/documents/computer-science/editor/src/VeModel.cpp",
+  "file": "/Users/juan/Desktop/documents/computer-science/editor/src/VeModel.cpp"
+},
+{
+  "directory": "/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/juan/Desktop/documents/computer-science/editor/src/include -I/Users/juan/Desktop/documents/computer-science/editor/src/. -I/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug/_deps/glfw-src/include -I/Users/juan/Desktop/documents/computer-science/editor/build/osx-debug/_deps/glm-src/glm/.. -isystem /usr/local/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=gnu++17 -o src/CMakeFiles/editor.dir/VeDevice.cpp.o -c /Users/juan/Desktop/documents/computer-science/editor/src/VeDevice.cpp",
   "file": "/Users/juan/Desktop/documents/computer-science/editor/src/VeDevice.cpp"
 },
