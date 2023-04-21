@@ -10,9 +10,10 @@
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
 
-// std
-#include <_types/_uint32_t.h>
+// c std
+#include <stdint.h>
 
+// std
 #include <array>
 #include <memory>
 #include <stdexcept>

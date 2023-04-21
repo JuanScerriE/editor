@@ -4,6 +4,7 @@
 
 // std
 #include <cassert>
+#include <cstring>
 
 namespace ve {
 
