@@ -36,7 +36,8 @@ void VeModel::createVertexBuffers(
 
   vkMapMemory(veDevice.device(), vertexBufferMemory, 0,
               bufferSize, 0, &data);
-  memcpy(data, vertices.data(), static_cast<size_t>(bufferSize));
+  memcpy(data, vertices.data(),
+         static_cast<size_t>(bufferSize));
   vkUnmapMemory(veDevice.device(), vertexBufferMemory);
 }
 
@@ -48,29 +49,38 @@ void VeModel::bind(VkCommandBuffer commandBuffer) {
   VkBuffer buffers[] = {vertexBuffer};
   VkDeviceSize offsets[] = {0};
 
-  vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
+  vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers,
+                         offsets);
 }
 
-std::vector<VkVertexInputBindingDescription> VeModel::Vertex::getBindingDescriptions() {
-  std::vector<VkVertexInputBindingDescription> bindingDescriptions(1);
+std::vector<VkVertexInputBindingDescription>
+VeModel::Vertex::getBindingDescriptions() {
+  std::vector<VkVertexInputBindingDescription>
+      bindingDescriptions(1);
   bindingDescriptions[0].binding = 0;
   bindingDescriptions[0].stride = sizeof(Vertex);
-  bindingDescriptions[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+  bindingDescriptions[0].inputRate =
+      VK_VERTEX_INPUT_RATE_VERTEX;
 
   return bindingDescriptions;
 }
 
-std::vector<VkVertexInputAttributeDescription> VeModel::Vertex::getAttributeDescriptions() {
-  std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
+std::vector<VkVertexInputAttributeDescription>
+VeModel::Vertex::getAttributeDescriptions() {
+  std::vector<VkVertexInputAttributeDescription>
+      attributeDescriptions(2);
   attributeDescriptions[0].binding = 0;
-  attributeDescriptions[0].offset = offsetof(VeModel::Vertex, position);
+  attributeDescriptions[0].offset =
+      offsetof(VeModel::Vertex, position);
   attributeDescriptions[0].location = 0;
   attributeDescriptions[0].format = VK_FORMAT_R32G32_SFLOAT;
 
   attributeDescriptions[1].binding = 0;
-  attributeDescriptions[1].offset = offsetof(VeModel::Vertex, color);
+  attributeDescriptions[1].offset =
+      offsetof(VeModel::Vertex, color);
   attributeDescriptions[1].location = 1;
-  attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+  attributeDescriptions[1].format =
+      VK_FORMAT_R32G32B32_SFLOAT;
 
   return attributeDescriptions;
 }

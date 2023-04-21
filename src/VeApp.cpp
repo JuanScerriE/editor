@@ -295,7 +295,8 @@ void VeApp::recordCommandBuffer(uint32_t imageIndex) {
 
   for (int i = 0; i < 4; i++) {
     SimplePushConstantData pushConstantData{};
-    pushConstantData.offset = {-0.4f + frame * 0.02, -0.4f + i * 0.25f};
+    pushConstantData.offset = {-0.4f + frame * 0.02,
+                               -0.4f + i * 0.25f};
     pushConstantData.color = {0.0f, 0.0f, 0.1f * i};
 
     vkCmdPushConstants(commandBuffers[imageIndex],

@@ -1,8 +1,8 @@
-#include "VeApp.hpp"
-
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+
+#include "VeApp.hpp"
 
 int main() {
   std::cout << "Start of Normal section..." << std::endl;
@@ -13,7 +13,7 @@ int main() {
   try {
     app.run();
   } catch (const std::exception& except) {
-    std::cerr << except.what() << std::endl;    
+    std::cerr << except.what() << std::endl;
     return EXIT_FAILURE;
   }
 

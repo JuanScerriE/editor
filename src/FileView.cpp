@@ -1,17 +1,14 @@
-#include <fstream>
-#include <iostream>
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
-
 #include <string>
 #include <vector>
 
 class FileView {
-public:
+ public:
   // Constructor / Destructor
   FileView() = default;
   ~FileView() = default;
@@ -27,7 +24,7 @@ public:
   // Debug
   void dbgPrint();
 
-private:
+ private:
   std::string m_fileName;
 
   unsigned int m_cursorX = 0;

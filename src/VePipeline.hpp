@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan_core.h>
+
 #include "VeDevice.hpp"
 #include "VeModel.hpp"
 
@@ -12,7 +13,8 @@ namespace ve {
 
 struct PipelineConfigInfo {
   PipelineConfigInfo(const PipelineConfigInfo&) = delete;
-  PipelineConfigInfo& operator=(const PipelineConfigInfo&) = delete;
+  PipelineConfigInfo& operator=(const PipelineConfigInfo&) =
+      delete;
 
   VkPipelineViewportStateCreateInfo viewportInfo;
   VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
@@ -42,7 +44,8 @@ class VePipeline {
 
   void bind(VkCommandBuffer commandBuffer);
 
-  static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo);
+  static void defaultPipelineConfigInfo(
+      PipelineConfigInfo& configInfo);
 
  private:
   static std::vector<char> readFile(

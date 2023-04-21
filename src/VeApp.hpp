@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vulkan/vulkan_core.h>
-#include "VePipeline.hpp"
-#include "VeWindow.hpp"
-#include "VeSwapChain.hpp"
+
 #include "VeModel.hpp"
+#include "VePipeline.hpp"
+#include "VeSwapChain.hpp"
+#include "VeWindow.hpp"
 
 // std
 #include <memory>

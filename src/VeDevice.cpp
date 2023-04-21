@@ -96,9 +96,10 @@ void VeDevice::createInstance() {
   auto extensions = getRequiredExtensions();
   createInfo.enabledExtensionCount =
       static_cast<uint32_t>(extensions.size());
-  std::cout << "Avaliable (For instance) extension:" << std::endl;
-  for (const auto& extension : extensions) {
-    std::cout << "  " << extension << std::endl; 
+  std::cout << "Avaliable (For instance) extension:"
+            << std::endl;
+  for (const auto &extension : extensions) {
+    std::cout << "  " << extension << std::endl;
   }
   createInfo.ppEnabledExtensionNames = extensions.data();
 
@@ -194,8 +195,9 @@ void VeDevice::createLogicalDevice() {
   createInfo.pEnabledFeatures = &deviceFeatures;
   createInfo.enabledExtensionCount =
       static_cast<uint32_t>(deviceExtensions.size());
-  std::cout << "Avaliable (For device) extension:" << std::endl;
-  for (const auto& extension : deviceExtensions) {
+  std::cout << "Avaliable (For device) extension:"
+            << std::endl;
+  for (const auto &extension : deviceExtensions) {
     std::cout << "  " << extension << std::endl;
   }
   createInfo.ppEnabledExtensionNames =
@@ -341,10 +343,10 @@ VeDevice::getRequiredExtensions() {
   if (enableValidationLayers) {
     extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
   }
-  
 
 #ifdef __APPLE__
-  extensions.push_back("VK_KHR_get_physical_device_properties2");
+  extensions.push_back(
+      "VK_KHR_get_physical_device_properties2");
   extensions.push_back("VK_KHR_portability_enumeration");
 #endif
 
@@ -397,7 +399,8 @@ bool VeDevice::checkDeviceExtensionSupport(
   std::cout << "Avaliable extensions: " << std::endl;
 
   for (const auto &extension : availableExtensions) {
-    std::cout << "  " << extension.extensionName << std::endl;
+    std::cout << "  " << extension.extensionName
+              << std::endl;
     requiredExtensions.erase(extension.extensionName);
   }
 
