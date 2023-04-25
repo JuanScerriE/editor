@@ -14,35 +14,35 @@
 namespace ve {
 
 class VeApp {
- public:
-  static constexpr unsigned int WIDTH = 800;
-  static constexpr unsigned int HEIGHT = 600;
+   public:
+    static constexpr unsigned int WIDTH = 800;
+    static constexpr unsigned int HEIGHT = 600;
 
-  VeApp();
-  ~VeApp();
+    VeApp();
+    ~VeApp();
 
-  VeApp(const VeApp&) = delete;
-  VeApp& operator=(const VeApp&) = delete;
+    VeApp(const VeApp&) = delete;
+    VeApp& operator=(const VeApp&) = delete;
 
-  void run();
+    void run();
 
- private:
-  void loadModels();
-  void createPipelineLayout();
-  void createPipeline();
-  void createCommandBuffers();
-  void freeCommandBuffers();
-  void drawFrame();
-  void recreateSwapChain();
-  void recordCommandBuffer(uint32_t imageIndex);
+   private:
+    void loadModels();
+    void createPipelineLayout();
+    void createPipeline();
+    void createCommandBuffers();
+    void freeCommandBuffers();
+    void drawFrame();
+    void recreateSwapChain();
+    void recordCommandBuffer(uint32_t imageIndex);
 
-  VeWindow veWindow{WIDTH, HEIGHT, "Hallo Vulcano!"};
-  VeDevice veDevice{veWindow};
-  std::unique_ptr<VeSwapChain> veSwapChain;
-  std::unique_ptr<VePipeline> vePipeline;
-  VkPipelineLayout pipelineLayout;
-  std::vector<VkCommandBuffer> commandBuffers;
-  std::unique_ptr<VeModel> veModel;
+    VeWindow veWindow{WIDTH, HEIGHT, "Hallo Vulcano!"};
+    VeDevice veDevice{veWindow};
+    std::unique_ptr<VeSwapChain> veSwapChain;
+    std::unique_ptr<VePipeline> vePipeline;
+    VkPipelineLayout pipelineLayout;
+    std::vector<VkCommandBuffer> commandBuffers;
+    std::unique_ptr<VeModel> veModel;
 };
 
 }  // namespace ve
