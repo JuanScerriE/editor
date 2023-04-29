@@ -1,3 +1,3 @@
 #!/bin/sh
 
-build/src/editor
+build/src/vktest

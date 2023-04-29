@@ -523,44 +523,8 @@
 },
 {
   "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/Editor.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/Editor.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/Editor.cpp",
-  "output": "src/CMakeFiles/editor.dir/Editor.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VeApp.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VeApp.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VeApp.cpp",
-  "output": "src/CMakeFiles/editor.dir/VeApp.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VeModel.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VeModel.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VeModel.cpp",
-  "output": "src/CMakeFiles/editor.dir/VeModel.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VeDevice.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VeDevice.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VeDevice.cpp",
-  "output": "src/CMakeFiles/editor.dir/VeDevice.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VeWindow.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VeWindow.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VeWindow.cpp",
-  "output": "src/CMakeFiles/editor.dir/VeWindow.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VePipeline.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VePipeline.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VePipeline.cpp",
-  "output": "src/CMakeFiles/editor.dir/VePipeline.cpp.o"
-},
-{
-  "directory": "/home/juan/Desktop/uni/compsci/editor/build",
-  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/editor.dir/VeSwapChain.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/VeSwapChain.cpp",
-  "file": "/home/juan/Desktop/uni/compsci/editor/src/VeSwapChain.cpp",
-  "output": "src/CMakeFiles/editor.dir/VeSwapChain.cpp.o"
+  "command": "/usr/bin/c++ -I/home/juan/Desktop/uni/compsci/editor/src/include -I/home/juan/Desktop/uni/compsci/editor/src/. -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glfw-src/include -I/home/juan/Desktop/uni/compsci/editor/build/_deps/glm-src/glm/.. -g -std=gnu++17 -o src/CMakeFiles/vktest.dir/Main.cpp.o -c /home/juan/Desktop/uni/compsci/editor/src/Main.cpp",
+  "file": "/home/juan/Desktop/uni/compsci/editor/src/Main.cpp",
+  "output": "src/CMakeFiles/vktest.dir/Main.cpp.o"
 }
 ]

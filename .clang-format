@@ -3,6 +3,8 @@ BasedOnStyle: Google
 ColumnLimit: 60
 
 AccessModifierOffset: -1
+IndentWidth: 4
+TabWidth: 4
 
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: None
