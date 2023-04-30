@@ -1,3 +1,3 @@
 #!/bin/sh
 
-gdb build/src/editor
+gdb build/src/vktest
