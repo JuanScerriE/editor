@@ -1,13 +1,18 @@
+// vulkan
 #include <vulkan/vulkan.h>
 #include <vulkan/vulkan_core.h>
 
+// c standard
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
+#include <csignal>
+
+// cpp standard
 #include <iostream>
 #include <stdexcept>
 #include <vector>
-#include <signal.h>
+#include <optional>
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
@@ -30,7 +35,7 @@ VkResult createDebugUtilsMessengerEXT(VkInstance instance,
 void destroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger,
         const VkAllocationCallbacks* pAllocator) {
     auto func = (PFN_vkDestroyDebugUtilsMessengerEXT)
-        vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessegnerEXT");
+        vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
     if (func != nullptr) {
         func(instance, debugMessenger, pAllocator);
     }
@@ -39,6 +44,40 @@ void destroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 
 void ctrlCHandler(int sig) {
     gSignalStatus = sig;
+}
+
+struct QueueFamilyIndices {
+    std::optional<uint32_t> graphicsFamily; 
+
+    bool isComplete() const {
+        return graphicsFamily.has_value();
+    }
+};
+
+QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
+    QueueFamilyIndices indices;
+
+    uint32_t queueFamilyCount = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+    
+    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+    int i = 0;
+
+    for (auto queueFamily : queueFamilies) {
+        if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+            indices.graphicsFamily = i;
+        }
+
+        if (indices.isComplete()) {
+            break;
+        }
+
+        i++;
+    }
+
+    return indices;
 }
 
 class Application {
@@ -72,7 +111,50 @@ private:
     void initVulkan() {
         createInstance();
         setupDebugMessenger();
+        pickPhysicalDevice();
     }
+
+    void pickPhysicalDevice() {
+        uint32_t deviceCount = 0;
+        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+        if (deviceCount == 0) {
+            throw std::runtime_error("failed to find GPUs with with Vulkan support");
+        }
+
+        std::vector<VkPhysicalDevice> devices(deviceCount);
+        vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+        for (auto device : devices) {
+            if (isDeviceSuitable(device)) {
+                physicalDevice = device;
+                break;
+            }
+        }
+
+        if (physicalDevice == VK_NULL_HANDLE) {
+            throw std::runtime_error("failed to find suitable GPU");
+        }
+
+    }
+
+    bool isDeviceSuitable(VkPhysicalDevice device) {
+        // TODO: add a ranking mechanism to pick the best GPU
+        // VkPhysicalDeviceProperties deviceProperties;
+        // vkGetPhysicalDeviceProperties(device, &deviceProperties);
+        //
+        // VkPhysicalDeviceFeatures deviceFeatures;
+        // vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
+
+        QueueFamilyIndices indices = findQueueFamilies(device); 
+        return indices.isComplete();
+
+// #ifdef __APPLE__
+//         return true;
+// #else
+//         return deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
+// #endif
+    }
+
 
     bool checkValidationLayerSupport() {
         uint32_t layerCount;
@@ -166,7 +248,7 @@ private:
         }
 
 #ifdef __APPLE__
-        requiredExtensions.pust_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
+        extensions.push_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
 #endif
         return extensions;
     }
@@ -253,6 +335,7 @@ private:
     GLFWwindow* window;
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
+    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 };
 
 int main() {
